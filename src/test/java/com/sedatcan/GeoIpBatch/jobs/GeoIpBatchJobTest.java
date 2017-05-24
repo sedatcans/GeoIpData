@@ -6,18 +6,15 @@ import com.sedatcan.GeoIpBatch.message.Value;
 import com.sedatcan.GeoIpBatch.service.GeoRandomDataService;
 import com.sedatcan.GeoIpBatch.service.external.GeoIpService;
 import com.sedatcan.GeoIpBatch.service.external.RandomApiService;
-import com.sedatcan.GeoIpBatch.service.external.impl.BaseServiceTest;
 import geoipservice.wsdl.GeoIP;
 import geoipservice.wsdl.GetGeoIPResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -25,7 +22,7 @@ import static org.mockito.Mockito.when;
 @MockBean({GeoRandomDataService.class,
         GeoIpService.class,
         RandomApiService.class})
-@Import(GeoIpBatchJob.class)
+@Import({GeoIpBatchJob.class, GeoIpBatchConfiguration.class})
 public class GeoIpBatchJobTest {
 
     @Autowired

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Service;
-import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
@@ -17,14 +16,14 @@ import org.springframework.ws.soap.client.core.SoapActionCallback;
 public class GeoIpServiceImpl extends WebServiceGatewaySupport implements GeoIpService {
 
     private static final String SOAP_ACTION = "http://www.webservicex.net/GetGeoIP";
+    @Value("${geoIpBatch.geoIp.service.url}")
+    private String geoIpServiceURI;
 
     @Autowired
     public GeoIpServiceImpl(Jaxb2Marshaller marshaller) {
         this.setMarshaller(marshaller);
-        this.setUnmarshaller(marshaller);    }
-
-    @Value("${geoIpBatch.geoIp.service.url}")
-    private String geoIpServiceURI;
+        this.setUnmarshaller(marshaller);
+    }
 
     @Override
     public GetGeoIPResponse getGeoIP(String ipAddress) {
@@ -35,9 +34,9 @@ public class GeoIpServiceImpl extends WebServiceGatewaySupport implements GeoIpS
                 geoIpServiceURI,
                 request,
                 new SoapActionCallback(SOAP_ACTION));
-        if(response != null){
+        if (response != null) {
             return (GetGeoIPResponse) response;
-        }else {
+        } else {
             throw new GeoIpBatchException(GeoIpBatchErrorCodes.GEOIPSERVICE_EMPTY_RESPONSE);
         }
 

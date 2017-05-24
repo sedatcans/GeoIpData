@@ -1,8 +1,7 @@
 package com.sedatcan.GeoIpBatch.configuration;
 
-import geoipservice.wsdl.GetGeoIP;
 import org.h2.server.web.WebServlet;
-import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 @EnableScheduling
 @Configuration
+@EnableBatchProcessing
 public class GeoIpBatchConfiguration {
 
     @Bean
@@ -29,8 +29,8 @@ public class GeoIpBatchConfiguration {
     }
 
     @Bean
-    ServletRegistrationBean h2servletRegistration(){
-        ServletRegistrationBean registrationBean = new ServletRegistrationBean( new WebServlet());
+    ServletRegistrationBean h2servletRegistration() {
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet());
         registrationBean.addUrlMappings("/console/*");
         return registrationBean;
     }

@@ -5,9 +5,9 @@ import com.sedatcan.GeoIpBatch.service.external.RandomApiService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
-public class RandomApiServiceImplTest extends BaseServiceTest{
+public class RandomApiServiceImplTest extends BaseServiceTest {
 
     @Autowired
     private RandomApiService randomApiService;
