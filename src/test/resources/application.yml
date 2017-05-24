@@ -1,0 +1,14 @@
+geoIpBatch:
+  randomapi:
+    rest:
+      url: http://gturnquist-quoters.cfapps.io/api/random
+  geoIp:
+    service:
+      url: http://www.webservicex.net/geoipservice.asmx
+spring:
+  datasource:
+    url: jdbc:h2:file:~/h2/test_db;DB_CLOSE_ON_EXIT=true
+    driverClassName: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
